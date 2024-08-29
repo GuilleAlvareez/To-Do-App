@@ -1,9 +1,9 @@
-export default function ResumeIcon({ isOpenTask }){
+export default function ResumeIcon({ isOpenResume }){
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            stroke={`${isOpenTask ? 'currentColor' : 'black'}`}
+            stroke={`${isOpenResume ? 'currentColor' : 'black'}`}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.75}
