@@ -3,9 +3,7 @@ import TrashIcon from './Icons/TrashIcon';
 import { useState } from "react";
 
 export function SideBar({ isOpenSideBar }) {
-    //HACER LOS STILOS DE CADA BOTON DE LA LISTA Y SOMBRAS
-    //A LA DERECHA DE LA SIDEBAR
-    const [isOpenTask, setIsOpenTask] = useState(false)
+    const [isOpenTask, setIsOpenTask] = useState(true)
     const [isOpenResume, setIsOpenResume] = useState(false)
 
     const handleTasksButton = () => {

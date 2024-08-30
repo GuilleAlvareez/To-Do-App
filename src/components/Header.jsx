@@ -11,7 +11,7 @@ export function Header({ isOpen, setIsOpen }) {
           <img className="w-full h-full" src="/sideBarIcon.svg" alt="SideBar"/>
         </button>
 
-        <span className="text-xl font-bold text-primary">ToDoApp</span>
+        <span className="text-xl font-bold text-primary">Tasks App</span>
       </header>
     )
 }
