@@ -3,10 +3,11 @@ import { useState, useContext } from "react"
 import { SideBar } from "./components/SideBar"
 import { AddTask } from "./components/AddTask"
 import { listTaskContext } from "./contexts/setOfTask"
+import { CardTask } from "./components/CardTask" 
 
 function App() {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false)
-  const { tasks } = useContext(listTaskContext)
+  const { listTasks } = useContext(listTaskContext)
 
   return (
     <div className="h-screen w-screen m-0 flex">
@@ -25,9 +26,17 @@ function App() {
 
         <AddTask/>
         
-        {/* CREAR EL COMPONENTE DE LAS TAREAS Y INTENTAR MOSTRARLO CORRECTAMENTE
-            COMPROBAR SI EL USECONTEXT TIENE TAREAS Y FUNCIONA CORRECTAMENTE
-        */}
+        
+        {
+          Array.from(listTasks).map((task, index) => {
+            return (
+              <CardTask
+                key={index}
+                task={task}
+              />
+            )
+          })
+        }
       </aside>
 
     </div>

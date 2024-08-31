@@ -6,6 +6,7 @@ import { listTaskContext } from "../contexts/setOfTask.jsx"
 export function AddTask() {
     const [nameTask, setNameTask] = useState("")
     const [categorySelected, setcategorySelected] = useState("")
+    const { addTask } = useContext(listTaskContext)
     
     const changeNameTask = (event) => {
         setNameTask(event.target.value)
@@ -13,25 +14,27 @@ export function AddTask() {
     
     // CADA VEZ QUE CAMBIA EL VALOR DE CATEGORIA SE EJECUTA ESTA FUNCION
     const handleSelectOption = (event) => {
-        if (event.target.value === "Trabajo" || event.target.value === "Personal" || event.target.value === "Estudio" || event.target.value === "Otro") {
-            setcategorySelected(event.target.value)
-        }
-    }
+        setcategorySelected(event.target.value);
+    };
     
     //CUANDO SE DA CLICK EN AÑADIR AÑADIMOS LA TAREA A UN SET DE TAREAS
     const handleAddTask = () => {
-        const { addTask } = useContext(listTaskContext)
-        const task = new Task(nameTask, categorySelected, false)
+        if (nameTask === "" || categorySelected === "") return
+        
+        const task = new Task(nameTask.trim(), categorySelected, false)
         addTask(task)
+        
+        setNameTask("")
+        setcategorySelected("")
     }
 
     return (
-        <article className="flex flex-col mx-5 rounded border notMobile:h-32 p-4 gap-2 border-gray-300">
-            <input type="text" placeholder="New task..." onChange={changeNameTask}
+        <article className="flex flex-col mx-5 rounded border notMobile:h-32 p-4 gap-2 border-gray-300 mb-5">
+            <input type="text" placeholder="New task..." value={nameTask} onChange={changeNameTask}
               className="h-10 border-gray-300 border rounded-md w-full px-2 py-4"/>
 
-            <div className="flex flex-col gap-2 notMobile:flex-row">
-                <input list="category" placeholder="Category" onChange={handleSelectOption}
+            <div className="flex gap-2 flex-row">
+                <input list="category" value={categorySelected} placeholder="Category" onChange={handleSelectOption}
                   className="h-10 text-black border-gray-300 border rounded-md w-full px-2 py-4"/>
                 
                 <datalist id="category">    
