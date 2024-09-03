@@ -2,7 +2,6 @@ export function Header({ isOpen, setIsOpen }) {
 
     const toggleButtonSideBar = () => {
       setIsOpen(!isOpen)
-      console.log(isOpen)
     } 
 
     return (

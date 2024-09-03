@@ -1,4 +1,4 @@
-import { AddIcon } from "./Icons/AddIcon"
+import { AddIcon } from "./Icons.jsx"
 import { useState, useContext } from "react"
 import { Task } from "../objects/Task"
 import { listTaskContext } from "../contexts/setOfTask.jsx"
@@ -7,6 +7,7 @@ export function AddTask() {
     const [nameTask, setNameTask] = useState("")
     const [categorySelected, setcategorySelected] = useState("")
     const { addTask } = useContext(listTaskContext)
+    
     
     const changeNameTask = (event) => {
         setNameTask(event.target.value)
@@ -38,10 +39,10 @@ export function AddTask() {
                   className="h-10 text-black border-gray-300 border rounded-md w-full px-2 py-4"/>
                 
                 <datalist id="category">    
-                    <option value="Trabajo"></option>
+                    <option value="Work"></option>
                     <option value="Personal"></option>
-                    <option value="Estudio"></option>
-                    <option value="Otro"></option>
+                    <option value="School"></option>
+                    <option value="Other"></option>
                 </datalist>   
 
                 <button onClick={handleAddTask} 

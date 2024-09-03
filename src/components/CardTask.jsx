@@ -1,9 +1,10 @@
-import TrashIcon from './Icons/TrashIcon'
-import TagIcon from './Icons/TagIcon.jsx'
-import { useState } from 'react'
+import { TagIcon, TrashIcon } from './Icons.jsx'
+import { useState, useContext } from 'react'
+import { listTaskContext } from '../contexts/setOfTask.jsx'
 
 export function CardTask({ task }) {
     const [isChecked, setIsChecked] = useState(task.completed)
+    const { deleteTask } = useContext(listTaskContext)
 
     const handleCheckTask = () => {
         setIsChecked(!isChecked)
@@ -22,7 +23,8 @@ export function CardTask({ task }) {
                     </label>
                 </div>
 
-                <button className="pl-2 w-10 h-10 flex items-center justify-center cursor-pointer">
+                <button onClick={() => deleteTask(task)}
+                    className="pl-2 w-10 h-10 flex items-center justify-center cursor-pointer">
                     <TrashIcon />
                 </button>
 

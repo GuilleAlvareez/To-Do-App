@@ -23,11 +23,25 @@ export function ListTaskProvider({ children }) {
         })
     }
 
+    const deleteTask = (task) => {
+        setListTasks(prevlistTask => {
+            const updateTaskList = new Set(prevlistTask)
+            Array.from(prevlistTask).forEach((t) => {
+                if (t.name === task.name && t.category === task.category) {
+                    updateTaskList.delete(t);
+                }
+            })
+            
+            return updateTaskList
+        })
+    }
+
     return (
         <listTaskContext.Provider value={{
             listTasks: Array.from(listTasks).reverse(),
             addTask,
-            updateTask
+            updateTask,
+            deleteTask
         }}>
             {children}
         </listTaskContext.Provider>

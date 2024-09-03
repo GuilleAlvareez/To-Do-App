@@ -1,19 +1,14 @@
-import ResumeIcon from "./Icons/ResumeIcon";
-import TrashIcon from './Icons/TrashIcon';
+import { ResumeIcon, TrashIcon } from './Icons.jsx'
 import { useState } from "react";
 
-export function SideBar({ isOpenSideBar }) {
-    const [isOpenTask, setIsOpenTask] = useState(true)
-    const [isOpenResume, setIsOpenResume] = useState(false)
+export function SideBar({ isOpenSideBar, handleSummary, windowTasks, windowSummary }) {
 
     const handleTasksButton = () => {
-      setIsOpenTask(!isOpenTask)
-      setIsOpenResume(false)
+      handleSummary()
     }
 
     const handleResumeButton = () => {
-      setIsOpenResume(!isOpenResume)
-      setIsOpenTask(false)
+      handleSummary()
     }
 
     return (
@@ -22,18 +17,18 @@ export function SideBar({ isOpenSideBar }) {
         <div className="h-full mx-4 mt-3">
 
           <button 
-            className={`flex flex-row w-full h-10 mb-4 px-4 py-2 justify-left items-center rounded transition-all duration-300 ease-in-out ${isOpenResume ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
+            className={`flex flex-row w-full h-10 mb-4 px-4 py-2 justify-left items-center rounded transition-all duration-300 ease-in-out ${windowSummary ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
             onClick={handleResumeButton}
           >
-            <ResumeIcon isOpenResume={isOpenResume}/>
-            Resumen
+            <ResumeIcon windowSummary={windowSummary}/>
+            Summary
           </button>
 
           <button 
-            className={`flex flex-row w-full h-10 mb-4 px-4 py-2 justify-start items-center rounded transition-all duration-300 ease-in-out ${isOpenTask ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
+            className={`flex flex-row w-full h-10 mb-4 px-4 py-2 justify-start items-center rounded transition-all duration-300 ease-in-out ${windowTasks ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
             onClick={handleTasksButton}
           >
-            <TrashIcon isOpenTask={isOpenTask}/>
+            <TrashIcon windowTasks={windowTasks}/>
             Tareas
           </button>
 
